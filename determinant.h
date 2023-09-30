@@ -26,12 +26,14 @@ assert(m1.rows==m1.columns && m1.rows>=1);
 //Dimensão 1
 if(m1.rows==1)
 return m1.matrix[0][0];
+
 //Dimensão 2 
 if(m1.rows==2)
 return ((m1.matrix[0][0]*m1.matrix[1][1])-(m1.matrix[1][0]*m1.matrix[0][1]));
+
 //Dimensão 3
 if(m1.rows==3)
-return ((m1.matrix[0][0]*m1.matrix[1][1]*m1.matrix[2][2])+(m1.matrix[0][1]*m1.matrix[1][2]*m1.matrix[2][0])+(m1.matrix[0][2]*m1.matrix[1][0]*m1.matrix[2][0])-(m1.matrix[0][2]*m1.matrix[1][1]*m1.matrix[2][0])-(m1.matrix[0][0]*m1.matrix[1][2]*m1.matrix[2][1])-(m1.matrix[0][1]*m1.matrix[1][0]*m1.matrix[2][2]));
+return ((m1.matrix[0][0]*m1.matrix[1][1]*m1.matrix[2][2])+(m1.matrix[0][1]*m1.matrix[1][2]*m1.matrix[2][0])+(m1.matrix[0][2]*m1.matrix[1][0]*m1.matrix[2][1])-(m1.matrix[0][2]*m1.matrix[1][1]*m1.matrix[2][0])-(m1.matrix[0][0]*m1.matrix[1][2]*m1.matrix[2][1])-(m1.matrix[0][1]*m1.matrix[1][0]*m1.matrix[2][2]));
 
 //Caso geral o determinante de uma matriz quadrada de ordem n superior a 3 é dada pelo produto de elementos de uma linha ou coluna pelos respectivos cofatores
 if(m1.rows>3){
