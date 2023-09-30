@@ -61,6 +61,12 @@ std::cout<<"\nCoeficientes das equações lineares:\n";
 left_coefficients_matrix.manual_setup();
 std::cout<<"\nValores númericos equações lineares:\n";
 right_coefficients_matrix.manual_setup();
+
+
+//TESTE
+//std::cout<<"TESTE DO SOLUCIONADOR DE SISTEMAS LINEARES:\n";
+//left_coefficients_matrix.print_matrix();
+//right_coefficients_matrix.print_matrix();
                                             };
 
 //Função que determina se um sistema é resolúvel ou não por meio do algoritmo de Cramer
@@ -120,6 +126,15 @@ variable_matrix.matrix[i][j]=left_coefficients_matrix.matrix[i][j];
 //Calculando uma solução da equação em questão
 variable_determinant=determinant(variable_matrix);
 solution_matrix.matrix[k][0]=variable_determinant/main_determinant;
+
+//TESTE
+//std::cout<<"TESTE DO SOLUCIONADOR DE SISTEMAS LINEARES:\n";
+//variable_matrix.print_matrix();
+//std::cout<<variable_determinant<<'\n';
+//std::cout<<main_determinant<<'\n';
+//std::cout<<solution_matrix.matrix[k][0]<<'\n';
+
+
                                                              };
 
 //Função que resolve o sistema de equações lineares
