@@ -349,7 +349,7 @@ return result;
 template<typename T>
 polynomial<T> polynomial<T>::operator/(polynomial<T>& p2){
 //Restrição
-assert(degree>p2.degree);
+assert(degree>=p2.degree);
 
 //Variáveis locais
 std::vector<T> operand_vector=polynomial_coefficients;
@@ -358,6 +358,14 @@ polynomial<T> result;
 int64_t i, k=0;
 
 //Procedimentos
+//Caso base: polinômios de mesmo grau
+if(degree==p2.degree){
+result.degree=0;
+result.polynomial_powers={0};
+result.polynomial_coefficients.push_back(polynomial_coefficients[0]/p2.polynomial_coefficients[0]);
+return result;
+                     };
+
 //Ajuste do grau do polinômio resultante
 result.degree=degree-p2.degree;
 
