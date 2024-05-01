@@ -11,7 +11,7 @@ using namespace std;
 //Função principal
 int main(){
 //Declarando polinômios
-polynomial<int> p1, p2, p3, p4, p5, p6, p7;
+polynomial<int> p1, p2, p3, p4, p5, p6, p7, p8;
 
 //Ajustando os polinômios
 p1.set();
@@ -40,7 +40,10 @@ cout<<"p5: "<<p5.algebraic()<<'\n';
 cout<<"p6: "<<p6.algebraic()<<'\n';
 cout<<"p7: "<<p7.algebraic()<<'\n';
 
+//Cópia
+p8=p1;
+cout<<"p8: "<<p8.algebraic()<<'\n';
+
 //Finalizando a aplicação
 return 0;
           }
-
