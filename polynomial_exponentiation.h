@@ -72,8 +72,8 @@ polynomial<T> polynomial_bin_pow(polynomial<T>& p1, U exponent){
 
  //Caso triviais: expoentes 0 ou 1
  if(exponent==0){
-  polynomial<T> zero_polynomial=generate_zero_polynomial<T>();
-  return zero_polynomial;
+  polynomial<T> unity_polynomial=generate_unity_polynomial<T>();
+  return unity_polynomial;
                 }
 
  if(exponent==1)
