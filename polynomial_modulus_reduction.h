@@ -1,4 +1,4 @@
-//VAMOS CRIAR UM PROGRAMA QUE IMPLMENTA ROTINAS PARA REDUZIR OS COEFICIENTES DE UM POLINÔMIO MÓDULO UM INTEIRO
+//VAMOS CRIAR UM PROGRAMA QUE IMPLEMENTA ROTINAS PARA REDUZIR OS COEFICIENTES DE UM POLINÔMIO MÓDULO UM INTEIRO
 
 
 //*************************************************************************************************************************************************************
