@@ -8,8 +8,9 @@ using namespace std;
 
 //Função principal
 int main(){
+
 //Variáveis locais
-Matrix<int> a(2), b(2,2), c, d, e, f, g, h, j, i(2, Identity), z(2, Zero); 
+Matrix<int> a(2), b(2,2), c, d, e, f, g, h, j, i(2, Identity), z(2, Zero), k, l(i); 
 
 //Testes
 //Matriz identidade e matriz nula
@@ -23,6 +24,7 @@ cout<<"Entrada e saída de dados:\n";
 cout<<"Matriz a:\n";
 a.manual_setup();
 a.print_matrix();
+
 cout<<"Matriz b:\n";
 b.manual_setup();
 b.print_matrix();
@@ -51,29 +53,38 @@ c.comatrix(2,3).print_matrix();
 
 //Operações básicas
 cout<<"Operações básicas em matrizes:\n";
+
 cout<<"Soma:\n";
 d=b+i;
 d.print_matrix();
+
 cout<<"Subtração:\n";
 e=b-i;
 e.print_matrix();
+
 cout<<"Multiplicação:\n";
 f=b*e;
 f.print_matrix();
+
 cout<<"Multiplicação por escalar:\n";
 h=b.scalar_multiplication(35);
 h.print_matrix();
+
 cout<<"Tranposição:\n";
 j=b.transpose();
 j.print_matrix();
+
 cout<<"Permutação de linhas e colunas:\n";
 j.permute_rows(0,1);
 j.print_matrix();
 j.permute_columns(0,1);
 j.print_matrix();
 
+cout<<"Cópia de matrizes:\n";
+k=b;
+k.print_matrix();
+l.print_matrix();
 
 //Finalizando a aplicação
 return 0;
           }
-
