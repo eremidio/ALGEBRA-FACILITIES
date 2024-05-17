@@ -1,9 +1,9 @@
-//VAMOS CRIAR UM PROGRAMA PARA TESTAR AS ROTINAS CRIADAS NO ARQUIVO matrix_echelon_form.h
-//COMPILAR ESTE PROGRAMA COM O COMANDO: g++ -o matrix_echelon_form matrix_echelon_form.cpp -O2
+//VAMOS CRIAR UM PROGRAMA PARA TESTAR AS ROTINAS CRIADAS NO ARQUIVO matrix_echelon_form_double.h
+//COMPILAR ESTE PROGRAMA COM O COMANDO: g++ -o matrix_echelon_form_double matrix_echelon_form_double.cpp -O2
 
 
 //Cabeçalho
-#include"matrix_echelon_form.h"
+#include"matrix_echelon_form_double.h"
 using namespace std;
 
 
