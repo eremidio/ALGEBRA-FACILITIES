@@ -12,8 +12,12 @@ int main(){
 
   //Variáveis locais
   rational_number<signed int> r1(2,3), r2, r3, r4, r5, r6, r7(144,480), r8(5,8), r9(12,5);
+  rational_number<int> r10, r11;
+
   float ratio;
   int quotient;
+  int i=15;
+  float f=0.66565;
 
   //Procedimentos
     //Recebendo input do usuário
@@ -43,6 +47,16 @@ int main(){
 
     cout<<"[float] r8: "<<ratio<<'\n';
     cout<<"[int] r9: "<<quotient<<'\n';
+
+    //Conversão de números em frações
+    cout<<"[float] f: "<<f<<'\n';
+    cout<<"[int] f: "<<i<<'\n';
+
+    r10=to_rational<int,int>(i);
+    r11=to_rational<float,int>(f);
+
+    cout<<"r10: "<<r10.algebraic()<<'\n';
+    cout<<"r11: "<<r11.algebraic()<<'\n';
 
 
   //Finalizando a aplicação
