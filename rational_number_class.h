@@ -61,6 +61,7 @@ public:
   rational_number<T> operator-(rational_number<T>);
   rational_number<T> operator*(rational_number<T>);
   rational_number<T> operator/(rational_number<T>);
+  rational_number<T> operator=(const rational_number<T>& );
   rational_number<T> rationalize();
 
   //Input/output e acesso a elementos
@@ -196,6 +197,23 @@ rational_number<T> rational_number<T>::operator/(rational_number<T> r1){
 
                                                                         };
 
+
+//Cópia
+template<typename T>
+rational_number<T> rational_number<T>::operator=(const rational_number<T>& r1){
+
+  //Variáveis  locais
+  rational_number<T> result;
+  
+  //Procedimentos
+    //Copiando os numerador e denominador
+    this->denominator=r1.denominator;
+    this->numerator=r1.numerator;
+
+  //Resultado
+  return *this;
+                                                                               };
+  
 
 
 //Funções de entradas e saídas de dados
