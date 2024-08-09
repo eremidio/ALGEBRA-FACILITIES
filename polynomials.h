@@ -14,7 +14,7 @@ REAIS.
 #include <assert.h>
 #include <inttypes.h>
 #include <stdint.h>
-
+#include<float.h>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -40,8 +40,8 @@ class polynomial {
                             // polinômios
   void set();                // Função que define um polinômio
   std::string algebraic();   // Função que printa um polinômio na tela
-  T evaluate_polynomial(T);  // Função que define o valor da raíz de um
-                             // polinômio
+  T evaluate_polynomial(T);  // Função que define o valor da raíz de um polinômio
+  void adjust_degree();//Função que reduz o grau de um polinômio contendo coeficientes nulos
 
   // Operações aritméticas básicas em aneis de polinômios
   polynomial<T> operator+(polynomial<T>&);
@@ -112,9 +112,38 @@ T polynomial<T>::evaluate_polynomial(T value) {
     result += parcel;
   };
 
-  // REsultado
+  // Resultado
   return result;
 };
+
+//Função que corrige o grau de um polinômio contendo coeficientes nulos nos termos de maior potência
+template <typename T>
+void polynomial<T>::adjust_degree(){
+  
+  //Variáveis locais
+  std::vector<T> new_coefficients;
+
+
+  //Procedimentos
+    //Loop principal: eleminando os termos 0 dos monômios de maior potência
+    new_coefficients.resize(0);
+    for(auto c:polynomial_coefficients){
+      if(c==0 && new_coefficients.size()==0) continue;
+      else if(c>0 && c<DBL_EPSILON) new_coefficients.push_back(0);
+      else if(c<0 && ((-1)*c)<DBL_EPSILON) new_coefficients.push_back(0);
+      else new_coefficients.push_back(c);
+
+    }
+
+    //Ajuste do grau do polinômio
+    polynomial_coefficients=new_coefficients;
+    degree = polynomial_coefficients.size()-1;
+    polynomial_powers.resize(0);
+    for (int64_t i = degree; i >= 0; --i) polynomial_powers.push_back(i);
+
+}
+
+
 
 // Função que printa um polinômio na tela
 template <typename T>
@@ -216,6 +245,10 @@ polynomial<T> polynomial<T>::operator+(polynomial<T>& p2) {
     for (auto y : p2.polynomial_powers) result.polynomial_powers.push_back(y);
   };
 
+  //Ajuste final
+  if(result.polynomial_coefficients[0]==0)
+    result.adjust_degree();
+
   // Resultado
   return result;
 };
@@ -284,6 +317,10 @@ polynomial<T> polynomial<T>::operator-(polynomial<T>& p2) {
   if (result.degree == p2.degree) {
     for (auto y : p2.polynomial_powers) result.polynomial_powers.push_back(y);
   };
+
+  //Ajuste final
+  if(result.polynomial_coefficients[0]==0)
+    result.adjust_degree();
 
   // Resultado
   return result;
@@ -377,8 +414,8 @@ polynomial<T> polynomial<T>::operator/(polynomial<T>& p2) {
     result.polynomial_coefficients.push_back(ratio);
 
     for (i = k; i < (k + p2.polynomial_coefficients.size()); ++i)
-      operand_vector[i] =
-          operand_vector[i] - (ratio * p2.polynomial_coefficients[i - k]);
+      operand_vector[i] = operand_vector[i] - (ratio * p2.polynomial_coefficients[i - k]);
+      if(i==k) operand_vector[i]=0;
 
     // Atualizando variável para a próxima iteração
     ++k;
@@ -416,7 +453,7 @@ polynomial<T> remainder(polynomial<T>& p1, polynomial<T>& p2) {
   assert(p1.degree >= p2.degree);
 
   // Variáveis locais
-  polynomial<T> quotient, temp, temp2, result;
+  polynomial<T> quotient, temp, result;
   polynomial<T> zero_polynomial;
   zero_polynomial.degree = 0;
   zero_polynomial.polynomial_powers = {0};
@@ -426,7 +463,7 @@ polynomial<T> remainder(polynomial<T>& p1, polynomial<T>& p2) {
   // Computando o a sequência intermediária
   quotient = p1 / p2;
   temp = quotient * p2;
-  temp2 = p1 - temp;
+ 
 
   // Caso base: p2 divide p1
   if (temp.degree == p1.degree &&
@@ -434,19 +471,7 @@ polynomial<T> remainder(polynomial<T>& p1, polynomial<T>& p2) {
     return zero_polynomial;
 
   // Computando o resultado
-  // Grau e coeficientes do polinômio
-  result.degree = 1;
-
-  for (auto c : temp2.polynomial_coefficients) {
-    if (c == 0 && result.polynomial_coefficients.size() == 0) continue;
-
-    result.polynomial_coefficients.push_back(c);
-  };
-
-  result.degree = (result.polynomial_coefficients.size() - 1);
-
-  for (int64_t i = result.degree; i >= 0; --i)
-    result.polynomial_powers.push_back(i);
+  result = p1 - temp;
 
   // Resultado
   return result;
