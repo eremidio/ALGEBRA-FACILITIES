@@ -1,12 +1,10 @@
-// VAMOS CRIAR UM PROGRAMA QUE IMPLEMENTA ALGORITMOS PARA EXPONENCIAÇÃO E
-// EXPONENCIAÇÃO MODULAR DE POLINÔMIOS
+// VAMOS CRIAR UM PROGRAMA QUE IMPLEMENTA ALGORITMOS PARA EXPONENCIAÇÃO E EXPONENCIAÇÃO MODULAR DE POLINÔMIOS
 
 //**************************************************************************************************************************************************************
 // CABEÇALHO
 #ifndef POLYNOMIAL_EXPONENTIATION_H
 #define POLYNOMIAL_EXPONENTIATION_H
 #include <type_traits>
-
 #include "polynomials.h"
 
 //**************************************************************************************************************************************************************
@@ -63,7 +61,7 @@ template <typename T, typename U>
 polynomial<T> polynomial_bin_pow(polynomial<T>& p1, U exponent) {
   // Restrição a expoentes inteiros
   static_assert(std::is_integral<U>::value, "Expoentes devem ser inteiros");
-  static_assert(std::is_integral<U>::value,
+  static_assert(std::is_integral<T>::value,
                 "Coeficientes de polinômios devem ser inteiros");
 
   // Caso triviais: expoentes 0 ou 1
@@ -98,14 +96,13 @@ polynomial<T> polynomial_bin_pow(polynomial<T>& p1, U exponent) {
   return result;
 };
 
-// Função que implementa o algoritmo de exponenciação modular para polinômios
-// sobre os reais
+// Função que implementa o algoritmo de exponenciação modular para polinômios sobre os reais
 template <typename T, typename U>
 polynomial<T> polynomial_powmod(polynomial<T>& p1, polynomial<T>& p2,
                                 U exponent) {
   // Restrição a expoentes inteiros
   static_assert(std::is_integral<U>::value, "Expoentes devem ser inteiros");
-  static_assert(std::is_integral<U>::value,
+  static_assert(std::is_integral<T>::value,
                 "Coeficientes de polinômios devem ser inteiros");
 
   // Caso triviais: expoentes 0 ou 1
@@ -114,7 +111,10 @@ polynomial<T> polynomial_powmod(polynomial<T>& p1, polynomial<T>& p2,
     return unity_polynomial;
   }
 
-  if (exponent == 1) return p1;
+  if (exponent == 1){
+     polynomial<T> result=remainder(p1, p2);
+     return result;
+  }
 
   // Caso geral:
   // Variáveis locais
