@@ -172,7 +172,7 @@ template<typename T>
 bivariate_monomial<T> bivariate_monomial<T>::operator+(bivariate_monomial<T>& m1){
 
   //Restrição: grau dos monômios nas duas variáveis devem ser iguais
-  assert(valuation==m1.valuation);
+  assert(valuation==m1.valuation && x_valuation==m1.x_valuation);
 
   //Variáveis locais
   bivariate_monomial<T> result;
@@ -195,7 +195,7 @@ template<typename T>
 bivariate_monomial<T> bivariate_monomial<T>::operator-(bivariate_monomial<T>& m1){
 
   //Restrição: grau dos monômios nas duas variáveis devem ser iguais
-  assert(valuation==m1.valuation);
+  assert(valuation==m1.valuation && x_valuation==m1.x_valuation);
 
   //Variáveis locais
   bivariate_monomial<T> result;
