@@ -263,7 +263,7 @@ template<typename T>
 bool bivariate_monomial<T>::operator==(bivariate_monomial<T>& m1){
 
   //Resultado
-  return (coefficient==m1.coefficient && valuation==m1.valuation);
+  return (coefficient==m1.coefficient && valuation==m1.valuation && x_valuation==m1.x_valuation);
 
 };
 
