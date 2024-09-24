@@ -237,9 +237,6 @@ bivariate_monomial<T> bivariate_monomial<T>::operator*(bivariate_monomial<T>& m1
 template<typename T>
 bivariate_monomial<T> bivariate_monomial<T>::operator/(bivariate_monomial<T>& m1){
 
-  //Restrição nas potências das duas variáveis do respectivos monômios
-  assert(x_valuation>=m1.x_valuation && y_valuation>=m1.y_valuation);
-
   //Variáveis locais
   bivariate_monomial<T> result;
 
