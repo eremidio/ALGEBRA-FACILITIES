@@ -36,7 +36,7 @@ template<typename T>
 polynomial<T> generate_powering_monomial(int64_t);
 
 template<typename T>
-void fast_polynomial_division_finite_field(polynomial<T>&, polynomial<T>&, polynomial<T>&, polynomial<T>&, int64_t);
+void fast_polynomial_division_finite_field(polynomial<T>&, polynomial<T>&, polynomial<T>&, polynomial<T>&, T);
 
 //************************************************************************************************************************************
 //FUNÇÕES
@@ -64,7 +64,7 @@ polynomial<T> generate_powering_monomial(int64_t n){
 
 //Função que calcula o quociente e o resto da divisão de dois polinômios (o divisor deve ser um polinômio mônico)
 template<typename T>
-void fast_polynomial_division_finite_field(polynomial<T>& A, polynomial<T>& B, polynomial<T>& quotient, polynomial<T>& remainder, int64_t prime){
+void fast_polynomial_division_finite_field(polynomial<T>& A, polynomial<T>& B, polynomial<T>& quotient, polynomial<T>& remainder, T prime){
 
   //Caso base:
   if(B.degree>A.degree){
@@ -92,18 +92,18 @@ void fast_polynomial_division_finite_field(polynomial<T>& A, polynomial<T>& B, p
       p1=g0;
       for(auto& c:p1.polynomial_coefficients) c<<=1;
 
-      p2=(f*g0); p2=polynomial_modulus_reduction<T, int64_t>(p2, prime);
-      p2=(p2*g0); p2=polynomial_modulus_reduction<T, int64_t>(p2, prime);
+      p2=(f*g0); p2=polynomial_modulus_reduction<T, T>(p2, prime);
+      p2=(p2*g0); p2=polynomial_modulus_reduction<T, T>(p2, prime);
 
       mod_poly1=generate_powering_monomial<T>(bin_pow(2, i));
 
       g1=p1-p2;
-      g1=polynomial_modulus_reduction<T, int64_t>(g1, prime);
+      g1=polynomial_modulus_reduction<T, T>(g1, prime);
       if(g1.degree>mod_poly1.degree){
         polynomial<T> temp1=g1/mod_poly1; polynomial<T> temp2=mod_poly1*temp1;
         g1=g1-temp2;
       }
-      g1=polynomial_modulus_reduction<T, int64_t>(g1, prime);
+      g1=polynomial_modulus_reduction<T, T>(g1, prime);
 
       //Atualizando variável para a próxima iteração
       g0=g1;
@@ -113,27 +113,27 @@ void fast_polynomial_division_finite_field(polynomial<T>& A, polynomial<T>& B, p
     //Calculando s(x)=rev(A)g(k, x) mod x^(m+1)
     f=polynomial_reversal<T>(A);
     s= f*g1;
-    s=polynomial_modulus_reduction<T, int64_t>(s, prime);
+    s=polynomial_modulus_reduction<T, T>(s, prime);
     
     mod_poly2=generate_powering_monomial<T>((m+1));
     if(s.degree>mod_poly2.degree){
       polynomial<T> temp1=s/mod_poly2; polynomial<T> temp2=mod_poly2*temp1;
       s=s-temp2;
     };
-    s=polynomial_modulus_reduction<T, int64_t>(s, prime);
+    s=polynomial_modulus_reduction<T, T>(s, prime);
 
 
   //Resultado
   mod_poly1=generate_powering_monomial<T>((m-s.degree));
   f=polynomial_reversal<T>(s);
   quotient=(f*mod_poly1);
-  quotient=polynomial_modulus_reduction<T, int64_t>(quotient, prime);
+  quotient=polynomial_modulus_reduction<T, T>(quotient, prime);
   
 
   p1=B*quotient;
-  p1=polynomial_modulus_reduction<T, int64_t>(p1, prime);
+  p1=polynomial_modulus_reduction<T, T>(p1, prime);
   remainder=A-p1;
-  remainder=polynomial_modulus_reduction<T, int64_t>(remainder, prime);
+  remainder=polynomial_modulus_reduction<T, T>(remainder, prime);
 
 };
 
