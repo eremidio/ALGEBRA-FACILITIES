@@ -19,8 +19,8 @@ PARA MAIORES REFERÊNCIAS: https://math.mit.edu/classes/18.783/2017/LectureNotes
 
 //************************************************************************************************************************************
 //CABEÇALHO
-#ifndef FAST_POLYNOMIAL_DIVISION_H
-#define FAST_POLYNOMIAL_DIVISION_H
+#ifndef FAST_POLYNOMIAL_DIVISION_FINITE_FIELD_H
+#define FAST_POLYNOMIAL_DIVISION_FINITE_FIELD_H
 #include"polynomial_rational_irreducibility.h"
 #include"polynomial_exponentiation_finite_field.h"
 #include"polynomial_exponentiation.h"
