@@ -1,5 +1,4 @@
-// VAMOS IMPLEMENTAR UM PROGRAMA COM FUNÇÕES PARA O CÁLCULO DE DETERMINANTES DE
-// MATRIZES
+// VAMOS IMPLEMENTAR UM PROGRAMA COM FUNÇÕES PARA O CÁLCULO DE DETERMINANTES DE MATRIZES
 
 /*
 OBS.: NO CÁLCULO DO DETERMINANTES DE MATRIZES USAR AS OPERAÇÕES DE TRANSPOSIÇÃO
@@ -40,23 +39,26 @@ T determinant(Matrix<T>& m1) {
             (m1.matrix[0][0] * m1.matrix[1][2] * m1.matrix[2][1]) -
             (m1.matrix[0][1] * m1.matrix[1][0] * m1.matrix[2][2]));
 
-  // Caso geral o determinante de uma matriz quadrada de ordem n superior a 3 é
-  // dada pelo produto de elementos de uma linha ou coluna pelos respectivos
+  // Caso geral o determinante de uma matriz quadrada de ordem n superior a 3 é dada pelo produto de elementos de uma linha ou coluna pelos respectivos
   // cofatores
   if (m1.rows > 3) {
     // Variáveis locais
     int64_t i;
     T result = 0;
+
     // Procedimentos
-    // Loop principal: produtos dos elementos da primeira linha pelos
-    // respectivos cofatores
-    for (i = 0; i < m1.rows; ++i) {
-      Matrix<T> cofactor_matrix = m1.comatrix(0, i);
-      if (i % 2 == 0)
-        result += determinant(cofactor_matrix);
-      else
-        result -= determinant(cofactor_matrix);
-    };
+      // Loop principal: produtos dos elementos da primeira linha pelos
+      // respectivos cofatores
+      for (i = 0; i < m1.rows; ++i) {
+        Matrix<T> cofactor_matrix = m1.comatrix(0, i);
+
+        if (i % 2 == 0)
+          result += (m1.matrix[0][i]*determinant(cofactor_matrix));
+        if (i % 2 == 1)
+          result -= (m1.matrix[0][i]*determinant(cofactor_matrix));
+      };
+
+    //Resultado
     return result;
   };
 
