@@ -85,7 +85,7 @@ polynomial<T> generate_number_polynomial(polynomial<rational_number<T>>& p1){
 
     //Ajuste dos coeficientes dos polinômios
     for(auto c:p1.polynomial_coefficients){
-      rational_number<T> c1=to_number<T, T>(c);
+      T c1=to_number<T, T>(c);
       result.polynomial_coefficients.push_back(c1);
 
     }
