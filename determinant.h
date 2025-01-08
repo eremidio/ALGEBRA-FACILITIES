@@ -15,7 +15,7 @@ PRIMEIRA LINHA PARA FACILITAR OS CÁLCULOS.
 
 //******************************************************************************************************************************************************************
 // FUNÇÕES
-// Função que calcula o determinante para matrizede entradas inteiras
+// Função que calcula o determinante para matriz de entradas númericas
 template <typename T>
 T determinant(Matrix<T>& m1) {
   // Restrição
@@ -50,6 +50,8 @@ T determinant(Matrix<T>& m1) {
       // Loop principal: produtos dos elementos da primeira linha pelos
       // respectivos cofatores
       for (i = 0; i < m1.rows; ++i) {
+
+        if(m1.matrix[0][i]==0) continue;
         Matrix<T> cofactor_matrix = m1.comatrix(0, i);
 
         if (i % 2 == 0)
