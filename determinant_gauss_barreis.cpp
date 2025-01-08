@@ -7,28 +7,37 @@
 using namespace std;
 
 
+// Função principal
+int main() {
 
-//Função principal
-int main(){
-
-  //Variáveis locais
+  // Matrizes
   Matrix<int64_t> m;
-  int64_t det;
+  int64_t matrix_size, matrix_entry;
 
-  //Procedimentos 
-    //Recebendo input do usuário
-    m.set_size();
-    m.manual_setup();
+  // Procedimentos
+    // Definindo as entradas da matriz
+    cout << "Ordem da matriz quadrada\n";
+    cin>> matrix_size;
+    m.reshape(matrix_size, matrix_size);
+   
 
-    cout<<"Matriz m: \n";
+    //Definindo as entradas matrizes com um gerador de números aleatórios
+    srand(time(NULL));
+    
+    for(int64_t i=0;  i<matrix_size; ++i){
+      for(int64_t j=0;  j<matrix_size; ++j){
+        matrix_entry=(-1)+rand()%3;
+        m.matrix[i][j]=matrix_entry;
+      }
+    }
+
+    cout << "Matriz m:\n";
     m.print_matrix();
 
-    //Calculando o determinante da matriz usandooalgoritmo de Gauss-Barreis
-    det=determinant_gauss_barreis<int64_t>(m);
-    cout<<"det(m) = "<<det<<'\n';
+  // Calculando o  determinante das matrizes
+  cout << "Determinante da matriz m: " << determinant_gauss_barreis(m) << "\n";
 
-
-  //Finalizando a aplicação
+  // Finalizando a aplicação
   return 0;
 
 }
