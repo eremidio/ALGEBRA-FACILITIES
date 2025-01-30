@@ -28,10 +28,10 @@ int main(){
   cout << "e: " << e << '\n';
 
   // Testando as rotinas de expoenenciação e exponenciação modular
-  pow_poly_gf = polynomial_bin_pow_finite_field<int, int>(p1, e, p);
+ // pow_poly_gf = polynomial_bin_pow_finite_field<int, int>(p1, e, p);
   powmod_poly_gf = polynomial_powmod_finite_field<int, int>(p1, p2, e, p);
 
-  cout << "p1(x)^e mod"<<p<< ": " << pow_poly_gf.algebraic() << '\n';
+  //cout << "p1(x)^e mod"<<p<< ": " << pow_poly_gf.algebraic() << '\n';
   cout << "p1(x)^e mod(p2(x),"<<p<<"): " << powmod_poly_gf.algebraic() << '\n';
 
   // Finalizando a aplicação

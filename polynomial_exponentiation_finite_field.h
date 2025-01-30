@@ -123,9 +123,12 @@ polynomial<T> polynomial_powmod_finite_field(polynomial<T>& p1, polynomial<T>& p
       };
 
       // Atualizando variáveis para a proxima iteração
-      polynomial<T> temp3 = multiplier * multiplier;
-      multiplier = temp3;
-      for(auto& c1:multiplier.polynomial_coefficients) c1%= prime_base;
+      multiplier = multiplier * multiplier;
+      if (multiplier.degree > p2.degree) {
+        polynomial<T> temp2 = remainder(multiplier, p2);
+        multiplier = temp2;
+        for(auto& c:multiplier.polynomial_coefficients) c%= prime_base;
+      };
       exponent >>= 1;
     };
 
