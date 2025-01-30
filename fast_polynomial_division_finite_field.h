@@ -22,7 +22,6 @@ PARA MAIORES REFERÊNCIAS: https://math.mit.edu/classes/18.783/2017/LectureNotes
 #ifndef FAST_POLYNOMIAL_DIVISION_FINITE_FIELD_H
 #define FAST_POLYNOMIAL_DIVISION_FINITE_FIELD_H
 #include"polynomial_rational_irreducibility.h"
-#include"polynomial_exponentiation_finite_field.h"
 #include"polynomial_exponentiation.h"
 #include"polynomial_modulus_reduction.h"
 #include"polynomial_gcd.h"
@@ -35,8 +34,8 @@ PARA MAIORES REFERÊNCIAS: https://math.mit.edu/classes/18.783/2017/LectureNotes
 template<typename T>
 polynomial<T> generate_powering_monomial(int64_t);
 
-template<typename T>
-void fast_polynomial_division_finite_field(polynomial<T>&, polynomial<T>&, polynomial<T>&, polynomial<T>&, T);
+template<typename T, typename U>
+void fast_polynomial_division_finite_field(polynomial<T>&, polynomial<T>&, polynomial<T>&, polynomial<T>&, U);
 
 //************************************************************************************************************************************
 //FUNÇÕES
@@ -63,8 +62,8 @@ polynomial<T> generate_powering_monomial(int64_t n){
 };
 
 //Função que calcula o quociente e o resto da divisão de dois polinômios (o divisor deve ser um polinômio mônico)
-template<typename T>
-void fast_polynomial_division_finite_field(polynomial<T>& A, polynomial<T>& B, polynomial<T>& quotient, polynomial<T>& remainder, T prime){
+template<typename T, typename U>
+void fast_polynomial_division_finite_field(polynomial<T>& A, polynomial<T>& B, polynomial<T>& quotient, polynomial<T>& remainder, U prime){
 
   //Caso base:
   if(B.degree>A.degree){
