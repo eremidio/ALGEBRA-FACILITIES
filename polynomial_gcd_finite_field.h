@@ -16,15 +16,15 @@ ALGORITMO PARA SER USADO COMO SUBROTINA EM ALGORITMOS MAIS SOFISTICADOS.
 
 //*******************************************************************************************
 //DECLARAÇÃO DE FUNÇÕES
-template<typename T>
-polynomial<T> polynomial_gcd_finite_field(polynomial<T>&, polynomial<T>&, T);
+template<typename T, typename U>
+polynomial<T> polynomial_gcd_finite_field(polynomial<T>&, polynomial<T>&, U);
 
 
 //*******************************************************************************************
 //FUNÇÕES
 //Função que calcula o gcd de dois polinômios definidos sobre F(p)
-template<typename T>
-polynomial<T> polynomial_gcd_finite_field(polynomial<T>& p1, polynomial<T>& p2, T prime){
+template<typename T, typename U>
+polynomial<T> polynomial_gcd_finite_field(polynomial<T>& p1, polynomial<T>& p2, U prime){
 
   //Restrição
   if(p2.degree>p1.degree) return polynomial_gcd_finite_field(p2, p1, prime);
@@ -37,13 +37,13 @@ polynomial<T> polynomial_gcd_finite_field(polynomial<T>& p1, polynomial<T>& p2, 
 
   //Procedimentos
     //Checando se p2(x) divide p1(x)
-    fast_polynomial_division_finite_field(p1, p2, Q, R, prime);
+    fast_polynomial_division_finite_field<T, U>(p1, p2, Q, R, prime);
     if (is_zero_polynomial<T>(R)) return p2;
 
 
     //Loop principal
     while(1){
-      fast_polynomial_division_finite_field(u, v, Q, R, prime);
+      fast_polynomial_division_finite_field<T, U>(u, v, Q, R, prime);
       if (is_zero_polynomial<T>(R) || is_equal_polynomial<T>(u, v) == true)
         break;
       else{
