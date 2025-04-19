@@ -20,19 +20,23 @@ SUBROTINAS EM ALGORITMOS MAIS SOFISTICADOS.
 #include<iostream>
 #include<type_traits>
 
+
+
+//************************************************************************************************************************
+//FUNÇÃO AUXILIAR
+//Função para atribuir um peso (chave) aos monômios de duas variáveis
+int64_t cantor_pairing_function(int64_t a, int64_t b){
+
+  //Variáveis locais
+  int64_t sum = a + b;
+  
+  //Resultado
+  return (((sum * (sum + 1)) / 2) + b);
+
+};
+
 //************************************************************************************************************************
 //CLASSE DE MONÔMIOS
-/*
-NOTA: Na presente classe a variável x tem peso 3 e a variável y tem peso 2. Por essa razão os
-monômios serão classificados em ordem lexográfica. Se necessário a prioridade poderá ser
-invertida atrbuindo-sepeso 2 a variável x e 3 a variável y. Neste caso as seguintes mudanças
-são necessárias:
-  valuation=(3*x_valuation)+(2*y_valuation); -- se coverte em-->
-  valuation=(2*x_valuation)+(3*y_valuation);
-
-Tal mudança deve ser realizada nos pontos apropriados do código.
-
-*/
 template<typename T>
 class bivariate_monomial{
     public:
@@ -49,7 +53,7 @@ class bivariate_monomial{
     coefficient=a;
     x_valuation=b;
     y_valuation=c;
-    valuation=(3*x_valuation)+(2*y_valuation);
+    valuation=cantor_pairing_function(x_valuation, y_valuation);
   };
 
   virtual ~bivariate_monomial(){ };
@@ -82,7 +86,7 @@ void bivariate_monomial<T>::set_degrees(int64_t a, int64_t b){
  
   x_valuation=a;
   y_valuation=b;
-  valuation=(3*x_valuation)+(2*y_valuation);
+  valuation=cantor_pairing_function(x_valuation, y_valuation);
 
 };
 
@@ -115,7 +119,7 @@ void bivariate_monomial<T>::set(){
     coefficient=c;
     x_valuation=x_power;
     y_valuation=y_power;
-    valuation=(3*x_valuation)+(2*y_valuation);
+    valuation=cantor_pairing_function(x_valuation, y_valuation);
 
 };
 
@@ -146,7 +150,7 @@ std::string bivariate_monomial<T>::algebraic(){
 
 }
 
-    /*Oerações aritméticas*/
+    /*Operações aritméticas*/
 
 //Cópia (copy constructor)
 template<typename T>
@@ -224,7 +228,7 @@ bivariate_monomial<T> bivariate_monomial<T>::operator*(bivariate_monomial<T>& m1
     //Ajuste do resultado
     result.x_valuation=x_valuation+m1.x_valuation;
     result.y_valuation=y_valuation+m1.y_valuation;
-    result.valuation=(3*result.x_valuation)+(2*result.y_valuation);
+    result.valuation=cantor_pairing_function(result.x_valuation, result.y_valuation);
     result.coefficient=coefficient*m1.coefficient;
     
 
@@ -237,6 +241,7 @@ bivariate_monomial<T> bivariate_monomial<T>::operator*(bivariate_monomial<T>& m1
 template<typename T>
 bivariate_monomial<T> bivariate_monomial<T>::operator/(bivariate_monomial<T>& m1){
 
+
   //Variáveis locais
   bivariate_monomial<T> result;
 
@@ -244,7 +249,7 @@ bivariate_monomial<T> bivariate_monomial<T>::operator/(bivariate_monomial<T>& m1
     //Ajuste do resultado
     result.x_valuation=x_valuation-m1.x_valuation;
     result.y_valuation=y_valuation-m1.y_valuation;
-    result.valuation=(3*result.x_valuation)+(2*result.y_valuation);
+    result.valuation=cantor_pairing_function(result.x_valuation, result.y_valuation);
     result.coefficient=coefficient/m1.coefficient;
     
 

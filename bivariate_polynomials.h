@@ -289,7 +289,7 @@ bivariate_polynomial<T> bivariate_polynomial<T>::operator*(bivariate_polynomial<
         new_coefficient=it1->second.coefficient*it2->second.coefficient;
         new_x_val=it1->second.x_valuation+it2->second.x_valuation;
         new_y_val=it1->second.y_valuation+it2->second.y_valuation;
-        val=(3*new_x_val)+(2*new_y_val);
+        val=cantor_pairing_function(new_x_val, new_y_val);
 
         //Checando se há algum termo no produto com o mesmo expoente
         auto found=result.monomials.find(val);
@@ -354,7 +354,7 @@ bivariate_polynomial<T> bivariate_polynomial<T>::operator/(bivariate_polynomial<
         }
         int64_t x_power=lead_term_dividend->second.x_valuation - lead_term_divisor->second.x_valuation;
         int64_t y_power=lead_term_dividend->second.y_valuation - lead_term_divisor->second.y_valuation;
-        int64_t val=(3*x_power)+(2*y_power);
+        int64_t val=cantor_pairing_function(x_power, y_power);
         bivariate_monomial<T> quotient_monomial(coeff_ratio, x_power, y_power);
         result.monomials.insert({val, quotient_monomial});
 
