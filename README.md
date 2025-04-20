@@ -32,3 +32,5 @@ Matrix computation by G. H. Golub and C. F Van Loan
 
 The Art of Computer Programming, volume 2 by D. E. Knuth
 
+A Computational Introduction to Number Theory and Algebra by Victor Shoup
+
