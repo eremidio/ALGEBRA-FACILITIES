@@ -118,11 +118,11 @@ polynomial<T> compute_q_pochhammer_symbol_infinite(int64_t n, int64_t m, int64_t
       polynomial<T> q_partial=qp_1-qp_2;
       q_symbol=q_symbol*q_partial;
 
-      if(q_symbol.degree()>(11*k)){
+      if(q_symbol.degree()>(2*k)){
 
         //Removendo os termos de expoentes elevados
         for(auto it=q_symbol.monomials.begin(); it!=q_symbol.monomials.end();){
-          if((it->second.power)>(11*k)) it = q_symbol.monomials.erase(it);
+          if((it->second.power)>(2*k)) it = q_symbol.monomials.erase(it);
           else break;
         }
 
