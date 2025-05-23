@@ -25,9 +25,9 @@ int main(){
     cin>> m;  
 
     //Computando o símbolo de q-Pochhammer
-    polynomial<int64_t> q_symbol=compute_q_pochhammer_symbol<int64_t>(n, m, k, a/*1*/, a/*1*/);
+    polynomial<int64_t> q_symbol=compute_q_pochhammer_symbol_infinite<int64_t>(n, m, k, a/*1*/, a/*1*/);
 
-    cout<<"[Série parcial] (q^"<<n<<"; q^"<<m<<")(∞)≃";
+    cout<<"[Série parcial] (q^"<<n<<"; q^"<<m<<")(∞)≃ ...+";
     for(auto it=q_symbol.monomials.begin(); it!=q_symbol.monomials.end(); ++it){
       cout<<"("<<it->second.coefficient<<")q^";
       cout<<it->second.power;
